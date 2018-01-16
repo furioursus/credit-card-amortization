@@ -20,6 +20,9 @@ function calculateTotal(amount, interestRate, payment) {
       monthsInterest = parseFloat(interestRate * amount);
     }
 
+    // Updates the amount to be paid off, minus the user’s principal.
+    amount = amount - principal;
+
     // This is the amount of money that is paid on the credit card, less
     // the month’s interest.
     principal = parseFloat(payment - monthsInterest);
@@ -28,20 +31,22 @@ function calculateTotal(amount, interestRate, payment) {
     // credit card loan terms.
     amountPayed = parseFloat(amountPayed) + parseFloat(payment);
 
-    // Updates the amount to be paid off, minus the user’s principal.
-    amount = (amount - principal);
+    monthsInterest = monthsInterest.toFixed(2);
+    amountPayed = amountPayed.toFixed(2);
+    principal = principal.toFixed(2);
 
     // Evaluates if last step of the while statement which will end up with a
     // negative amount of owed money, as the last payment will be something
     // smaller than the set monthly payment and adds that to the amount paid
     // which gives us the actual final number.
     if (amount < 0) {
-      amountPayed = amountPayed + parseFloat(amount);
+      amountPayed = parseFloat(amountPayed) + parseFloat(amount);
+      amountPayed = amountPayed.toFixed(2);
       amount = 0;
     }
 
     // Returns false if the monthly payments can’t keep up with the interest.
-    if (payment < monthsInterest && amount > 0) {
+    if (parseFloat(payment) < parseFloat(monthsInterest) && amount > 0) {
       return false;
     }
 
@@ -55,7 +60,6 @@ function calculateTotal(amount, interestRate, payment) {
     amountPayed: amountPayed,
     monthCount: monthCount
   }
-
   return payload;
 
 }
