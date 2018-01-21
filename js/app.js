@@ -15,8 +15,8 @@ document.getElementById('credit-payoff-calculator').addEventListener('submit', f
 
   // Simple function for rendering out currency values. Change 'en-AU' and 'AUD'
   // to your region’s currency values.
-  function currency(number) {
-    return number.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });
+  function currency(number, locale = 'en-AU', currency = 'AUD') {
+    return number.toLocaleString(locale, { style: 'currency', currency: currency });
   }
 
   result = calculateTotal(amountOwed, interestRate, monthlyPayment);

@@ -57,8 +57,8 @@ function calculateTotal(amount, interestRate, payment) {
   // cost the information supplied would end up being, as well as the number of
   // months required to pay it off at that rate.
   var payload = {
-    amountPayed: amountPayed,
-    monthCount: monthCount
+    amountPayed: parseFloat(amountPayed),
+    monthCount: parseFloat(monthCount)
   }
   return payload;
 
